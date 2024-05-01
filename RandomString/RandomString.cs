@@ -13,10 +13,22 @@ namespace RandomString
         {
             Random random = new Random();
             var charArr = LowerCase.Concat(UpperCase).Concat(Numbers).ToArray();
-            StringBuilder randomString = new StringBuilder();
-            for(var i = 0; i < length; i++) {
-                int rng = random.Next(0, charArr.Length);
-                randomString.Append(charArr[rng]);  
+            return RandomGenerator(length, charArr);
+        }
+        public static string LowerNumberGenerator(int length)
+        {
+            Random random = new Random();
+            var charArr = LowerCase.Concat(Numbers).ToArray();
+            return RandomGenerator(length, charArr);
+        }
+        private static string RandomGenerator(int length, char[] charArr)
+        {
+            Random random = new Random();   
+            var randomString = new StringBuilder();
+            for (var i = 0; i < length; i++)
+            {
+                int rng = random.Next(0, charArr.Length - 1);
+                randomString.Append(charArr[rng]);
             }
             return randomString.ToString();
         }
