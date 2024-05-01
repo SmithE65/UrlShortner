@@ -6,8 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+
 builder.Services.AddDbContext<UrlShortnerContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DevDb") ?? throw new InvalidOperationException("UrlShortnerContext Not Found")));
+builder.Services.AddControllers();
 builder.Services.AddCors();
 var app = builder.Build();
 

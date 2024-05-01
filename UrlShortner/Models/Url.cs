@@ -8,7 +8,7 @@ namespace UrlShortner.Models
     public class Url
     {
         public int Id { get; set; }
-        [StringLength(5)]
+        [StringLength(8)]
         public string Key { get; set; } = string.Empty;
         public string LongUrl { get; set; } = string.Empty;
         public string ShortUrl {  get; set; } = string.Empty;
