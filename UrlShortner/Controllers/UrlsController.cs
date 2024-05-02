@@ -51,7 +51,7 @@ namespace UrlShortner.Controllers
             string key;
             do
             {
-                key = RandomString.RandomString.LowerUpperNumberGenerator(8);
+                key = Hasher.HashifyAndRandomizeString(newURLDTO.Url, 8);
                 keyExists = await KeyExists(key);
             } while(keyExists);
             if (!newURLDTO.ShortUrl.StartsWith("http://") || !newURLDTO.Url.StartsWith("https://")) newURLDTO.Url = $"http://{newURLDTO.Url}";

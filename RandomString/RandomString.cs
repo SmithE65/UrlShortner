@@ -21,7 +21,7 @@ namespace RandomString
             var charArr = LowerCase.Concat(Numbers).ToArray();
             return RandomGenerator(length, charArr);
         }
-        private static string RandomGenerator(int length, char[] charArr)
+        public static string RandomGenerator(int length, char[] charArr)
         {
             Random random = new Random();   
             var randomString = new StringBuilder();
@@ -29,6 +29,17 @@ namespace RandomString
             {
                 int rng = random.Next(0, charArr.Length - 1);
                 randomString.Append(charArr[rng]);
+            }
+            return randomString.ToString();
+        }
+        public static string RandomGenerator(int length, string input)
+        {
+            Random random = new Random();
+            var randomString = new StringBuilder();
+            for (var i = 0; i < length; i++)
+            {
+                int rng = random.Next(0, input.Length - 1);
+                randomString.Append(input[rng]);
             }
             return randomString.ToString();
         }
