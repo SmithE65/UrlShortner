@@ -36,7 +36,7 @@ namespace UrlShortner.Controllers
             if (key == null || key == string.Empty) return BadRequest();
             var res = await _context.Urls.FirstOrDefaultAsync(x  => x.Key == key);
             if (res == null) return NotFound();
-            return Redirect(res.LongUrl);
+            return Ok(res);
         }
         [HttpPost]
         public async Task<ActionResult<Url>> NewShortUrl(NewURLDTO newURLDTO)
@@ -45,8 +45,11 @@ namespace UrlShortner.Controllers
             {
                 return BadRequest();
             }
-            bool exists = await UrlExists(newURLDTO.Url);
-            if (exists == true) return BadRequest("URL Exists");
+            var exixts = await _context.Urls.FirstOrDefaultAsync(x => x.LongUrl == newURLDTO.Url);
+            if (exixts != null)
+            {
+                return Ok(exixts);
+            }
             bool keyExists = true;
             string key;
             do
@@ -55,7 +58,7 @@ namespace UrlShortner.Controllers
                 keyExists = await KeyExists(key);
             } while(keyExists);
             if (!newURLDTO.ShortUrl.StartsWith("http://") || !newURLDTO.Url.StartsWith("https://")) newURLDTO.Url = $"http://{newURLDTO.Url}";
-            Url url = new Url { LongUrl = newURLDTO.Url, Key = key, ShortUrl = $"{newURLDTO.ShortUrl}/{key}" };
+            Url url = new Url { LongUrl = newURLDTO.Url, Key = key, ShortUrl = $"{newURLDTO.ShortUrl}{key}" };
             _context.Urls.Add(url);
             await _context.SaveChangesAsync();
             return Ok(url);
@@ -69,10 +72,6 @@ namespace UrlShortner.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-        private async Task<bool> UrlExists(string url)
-        {
-            return await _context.Urls.Where(x => x.LongUrl ==  url).AnyAsync();    
         }
         private async Task<bool> KeyExists(string key)
         {
