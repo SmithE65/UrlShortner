@@ -1,0 +1,4 @@
+{
+    "baseUrl" : "http://localhost:5555/api",
+    "shortUrl" : "http://localhost:4200/"
+}
