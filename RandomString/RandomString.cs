@@ -40,6 +40,7 @@ namespace RandomString
             {
                 int rng = random.Next(0, input.Length - 1);
                 randomString.Append(input[rng]);
+                input.Remove(rng);
             }
             return randomString.ToString();
         }

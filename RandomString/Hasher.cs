@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Base62;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,9 +13,11 @@ namespace RandomString
     {
         public static string HashifyAndRandomizeString(string input, int length)
         {
+            // Creates a hash converts it into a string and then picks a number of random chars out of that string
             MD5 md5 = MD5.Create();
             var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
-            var longHashString = Hasher.ByteArrayToString(hash);
+
+            var longHashString = hash.ToBase62();
             var shortHashString = RandomString.RandomGenerator(length, longHashString);
             return shortHashString;
         }
@@ -25,9 +28,10 @@ namespace RandomString
 
             for (int i = 0; i < bytes.Length; i++)
             {
-                sb.Append(bytes[i].ToString("X2"));
+                sb.Append(bytes[i].ToString());
             }
             return sb.ToString();
         }
+
     }
 }

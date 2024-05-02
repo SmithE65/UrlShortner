@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Base62-Net" Version="1.2.157201" />
+  </ItemGroup>
+
 </Project>
