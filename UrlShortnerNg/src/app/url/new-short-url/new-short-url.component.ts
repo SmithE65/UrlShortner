@@ -31,7 +31,7 @@ export class NewShortUrlComponent {
       next:(res) => {
         console.debug(res);
         this.newURL = res;
-        this.message = this.sanitizer.bypassSecurityTrustHtml(`Short URL: <a href="${this.newURL.shortUrl}">${this.newURL.shortUrl}</a>         <button (click)="copyUrl()"><i class="bi bi-copy"></i></button>`);
+        this.message = this.newURL.shortUrl;
       },
       error:(err) => {
         console.error(err);

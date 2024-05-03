@@ -14,19 +14,22 @@ body {
 
 
 .container {
+    display: flex;
+    flex-direction: column;
     width:600px;
-    margin-inline: auto;
     padding: 1em;
+    align-items: center;
+    justify-content: center;
 }
 .bordered {
     border-style: solid;
     border-radius: 10px;
     border-width: 1px;
 }
+.line {
+    width: 100%;
+}
 .label {
-    margin: 0px;
-    padding: 1px;
-    height : 21px;
 }
 input {
     width: 70%;
@@ -44,4 +47,13 @@ a {
     border-style: solid;
     border-width: 1px;
     font-size: 1.1em;
+}
+.copy {
+    background-color: #000;
+    color: #ffffffff;
+    border: solid;
+    border-color: #ffffffff;
+    border-radius: 5px;
+    border-width: 1px;
+    margin-left: 5px;
 }

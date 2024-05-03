@@ -4,9 +4,7 @@
         <input [(ngModel)] = "newUrlDTO.url">
         <button class="btn btnUrl"(click)="createNewUrl()">Add  URL</button>
     </div>
-    <div class="message">
-        
-        <div [innerHTML]="message">
-        </div>
+    <div class="message" *ngIf="message">
+        URL: <a href="{{message}}">{{message}} </a> <button class="copy" (click)="copyUrl()"><i class="bi bi-clipboard"></i></button>
     </div>
 </div>
