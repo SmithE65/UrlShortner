@@ -5,7 +5,7 @@ import { UrlService } from '../url.service';
 import { Route, Router} from '@angular/router';
 import { NewUrlDTO } from 'src/app/dtos/newUrlDTO';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import { Clipboard } from '@angular/cdk/clipboard'
 
 @Component({
   selector: 'app-new-short-url',
@@ -19,7 +19,8 @@ export class NewShortUrlComponent {
   message: any;
   constructor(private globalSvc:GlobalService,
     private urlSvc:UrlService,
-    private sanitizer :DomSanitizer
+    private sanitizer :DomSanitizer,
+    private clippy: Clipboard
   ){}
 
 
@@ -30,7 +31,7 @@ export class NewShortUrlComponent {
       next:(res) => {
         console.debug(res);
         this.newURL = res;
-        this.message = this.sanitizer.bypassSecurityTrustHtml(`<a href="${this.newURL.shortUrl}">http://${this.newURL.shortUrl}</a>`);
+        this.message = this.sanitizer.bypassSecurityTrustHtml(`<a href="${this.newURL.shortUrl}">${this.newURL.shortUrl}</a>`);
       },
       error:(err) => {
         console.error(err);
