@@ -1,4 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    height: 100vh;
+     display: flex; 
+     justify-content: center; 
+     align-items: center;
+     background-color: #000;
+     color:#fff 
+}
+
+
+.container {
+    width:600px;
+    margin-inline: auto;
+    padding: 1em;
+}
+.bordered {
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+}
+.label {
+    margin: 0px;
+    padding: 1px;
+    height : 21px;
+}
+input {
+    width: 70%;
+    margin: 1em;
+}
+a {
+    color:#ffffffff;
+}
+.btnUrl {
+    color: #ffffffff;
+    background-color: #000;
+    border:solid;
+    border-color: #ffffffff;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 1.1em;
+}

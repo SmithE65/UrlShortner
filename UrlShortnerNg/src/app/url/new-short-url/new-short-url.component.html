@@ -1,11 +1,12 @@
 <div class="container bordered">
-    <div>
-        URL
+    <div class="line">
+        <span class="label">URL:</span>
         <input [(ngModel)] = "newUrlDTO.url">
+        <button class="btn btnUrl"(click)="createNewUrl()">Add  URL</button>
     </div>
-    <div>
-        <button (click)="createNewUrl()">Add New URL</button>
-    </div>
-    <div [innerHTML]="message">
+    <div class="message">
+        
+        <div [innerHTML]="message">
+        </div>
     </div>
 </div>

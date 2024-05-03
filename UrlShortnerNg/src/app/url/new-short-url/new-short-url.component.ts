@@ -31,11 +31,14 @@ export class NewShortUrlComponent {
       next:(res) => {
         console.debug(res);
         this.newURL = res;
-        this.message = this.sanitizer.bypassSecurityTrustHtml(`<a href="${this.newURL.shortUrl}">${this.newURL.shortUrl}</a>`);
+        this.message = this.sanitizer.bypassSecurityTrustHtml(`Short URL: <a href="${this.newURL.shortUrl}">${this.newURL.shortUrl}</a>         <button (click)="copyUrl()"><i class="bi bi-copy"></i></button>`);
       },
       error:(err) => {
         console.error(err);
       }
     });
+  }
+  copyUrl():void{
+    this.clippy.copy(this.newURL.shortUrl);
   }
 }

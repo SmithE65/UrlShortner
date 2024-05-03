@@ -14,7 +14,6 @@ export class AppInitService {
         this.config = cfg;
         console.debug("assets/config.json", this.config);
         console.log(this.config);
-        console.log("FUCK YOU");
         resolve();
       },
       err => {

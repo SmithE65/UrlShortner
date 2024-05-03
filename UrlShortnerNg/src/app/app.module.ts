@@ -11,7 +11,6 @@ import { RedirectComponent } from './url/redirect/redirect.component';
 
 
 const startupServiceFactory = (appinit: AppInitService) => {
-  console.log("WORK");
   console.debug("starupServiceFactory()");
   return() => appinit.getSettings();
 }
