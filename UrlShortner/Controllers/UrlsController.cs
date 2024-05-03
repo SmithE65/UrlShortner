@@ -57,7 +57,7 @@ namespace UrlShortner.Controllers
                 key = Hasher.HashifyAndRandomizeString(newURLDTO.Url, 8);
                 keyExists = await KeyExists(key);
             } while(keyExists);
-            if (!newURLDTO.ShortUrl.StartsWith("http://") || !newURLDTO.Url.StartsWith("https://")) newURLDTO.Url = $"http://{newURLDTO.Url}";
+            if (!newURLDTO.Url.StartsWith("http://") || !newURLDTO.Url.StartsWith("https://")) newURLDTO.Url = $"http://{newURLDTO.Url}";
             Url url = new Url { LongUrl = newURLDTO.Url, Key = key, ShortUrl = $"{newURLDTO.ShortUrl}{key}" };
             _context.Urls.Add(url);
             await _context.SaveChangesAsync();
