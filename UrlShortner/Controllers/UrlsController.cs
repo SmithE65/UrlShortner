@@ -52,10 +52,16 @@ namespace UrlShortner.Controllers
             }
             bool keyExists = true;
             string key;
+            key = Hasher.Hmac256ToString(newURLDTO.Url, 8);
+            int counter = 0;
             do
             {
-                key = Hasher.HashifyAndRandomizeString(newURLDTO.Url, 8);
                 keyExists = await KeyExists(key);
+                if (keyExists)
+                {
+                    key = Hasher.Hmac256ToString(newURLDTO.Url, 8, counter);
+                    counter++;
+                }
             } while(keyExists);
             if (!newURLDTO.Url.StartsWith("http://") && !newURLDTO.Url.StartsWith("https://")) newURLDTO.Url = $"http://{newURLDTO.Url}";
             Url url = new Url { LongUrl = newURLDTO.Url, Key = key, ShortUrl = $"{newURLDTO.ShortUrl}{key}" };

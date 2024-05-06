@@ -32,6 +32,21 @@ namespace RandomString
             }
             return sb.ToString();
         }
+        public static string Hmac256ToString (string input, int length)
+        {
+            /// A method that hashs a string to hmac256, converts to a base62 string then trims to a specific length
+            HMACSHA256 hMACSHA256 = new HMACSHA256();
+            var hash = hMACSHA256.ComputeHash(Encoding.UTF8.GetBytes(input));
+            var hashStringLong = hash.ToBase62();
+            return hashStringLong.Substring(0, length);
+        }
+        public static string Hmac256ToString(string input, int length, int seed)
+        {
+            HMACSHA256 hmac = new HMACSHA256();
+            var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(input + seed));
+            var hashStringLong = hash.ToBase62();
+            return hashStringLong.Substring(0, length);
+        }
 
     }
 }
