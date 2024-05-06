@@ -29,11 +29,12 @@ body {
 .line {
     width: 100%;
 }
-.label {
-}
+
 input {
     width: 70%;
     margin: 1em;
+    font-size: 1.2em;
+    border-radius: 5px;
 }
 a {
     color:#ffffffff;
@@ -43,7 +44,7 @@ a {
     background-color: #000;
     border:solid;
     border-color: #ffffffff;
-    border-radius: 5px;
+    border-radius: 10px;
     border-style: solid;
     border-width: 1px;
     font-size: 1.1em;
