@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using UrlShortner.Data;
 
@@ -6,8 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
-builder.Services.AddDbContext<UrlShortnerContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DevDb") ?? throw new InvalidOperationException("UrlShortnerContext Not Found")));
+var connectionString = builder.Configuration.GetConnectionString("DevDb")
+    ?? throw new InvalidOperationException("UrlShortnerContext Not Found");
+builder.Services.AddDbContext<UrlShortnerContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddControllers();
 builder.Services.AddCors();
 var app = builder.Build();
