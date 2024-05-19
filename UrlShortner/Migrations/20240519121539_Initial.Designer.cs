@@ -11,8 +11,8 @@ using UrlShortner.Data;
 namespace UrlShortner.Migrations
 {
     [DbContext(typeof(UrlShortnerContext))]
-    [Migration("20240429175955_key")]
-    partial class key
+    [Migration("20240519121539_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,8 +34,8 @@ namespace UrlShortner.Migrations
 
                     b.Property<string>("Key")
                         .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("nvarchar(5)");
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("LongUrl")
                         .IsRequired()

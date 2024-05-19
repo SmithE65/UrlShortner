@@ -5,7 +5,7 @@
 namespace UrlShortner.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,6 +16,7 @@ namespace UrlShortner.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Key = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
                     LongUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ShortUrl = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -25,9 +26,9 @@ namespace UrlShortner.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Urls_ShortUrl",
+                name: "IX_Urls_ShortUrl_Key",
                 table: "Urls",
-                column: "ShortUrl",
+                columns: new[] { "ShortUrl", "Key" },
                 unique: true);
         }
 
