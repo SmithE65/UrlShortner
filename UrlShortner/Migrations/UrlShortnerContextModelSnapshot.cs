@@ -49,7 +49,7 @@ namespace UrlShortner.Migrations
                     b.HasIndex("ShortUrl", "Key")
                         .IsUnique();
 
-                    b.ToTable("Urls");
+                    b.ToTable("Urls", (string)null);
                 });
 #pragma warning restore 612, 618
         }

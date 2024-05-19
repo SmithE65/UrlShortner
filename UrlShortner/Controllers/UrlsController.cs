@@ -16,36 +16,32 @@ public class UrlsController(UrlShortnerContext context) : ControllerBase
     [HttpGet("/byid/{id}")]
     public async Task<ActionResult<Url>> GetUrlById(int id)
     {
-        if (id >= 0)
-        {
-            return BadRequest("Invalid Id");
-        }
-
         var res = await _context.Urls.FirstOrDefaultAsync(x => x.Id == id);
-        return res == null ? (ActionResult<Url>)NotFound() : (ActionResult<Url>)Ok(res);
+
+        return res switch
+        {
+            null => NotFound(),
+            _ => Ok(res)
+        };
     }
 
-    [HttpGet("bykey/{key}")]
+    [HttpGet("{key}")]
     public async Task<ActionResult<Url>> GetUrlByKey(string key)
     {
-        if (key == null || key == string.Empty)
-        {
-            return BadRequest();
-        }
-
         var res = await _context.Urls.FirstOrDefaultAsync(x => x.Key == key);
-        return res == null ? (ActionResult<Url>)NotFound() : (ActionResult<Url>)Ok(res);
+
+        return res switch
+        {
+            null => NotFound(),
+            _ => Ok(res)
+        };
     }
 
     [HttpPost]
-    public async Task<ActionResult<Url>> NewShortUrl(ShortUrlDto newURLDTO)
+    public async Task<ActionResult<ShortUrlDto>> NewShortUrl(ShortUrlDto dto)
     {
-        if (newURLDTO == null || newURLDTO.Url == string.Empty)
-        {
-            return BadRequest();
-        }
+        var exists = await _context.Urls.FirstOrDefaultAsync(x => x.LongUrl == dto.Url);
 
-        var exists = await _context.Urls.FirstOrDefaultAsync(x => x.LongUrl == newURLDTO.Url);
         if (exists != null)
         {
             return Ok(exists);
@@ -53,26 +49,24 @@ public class UrlsController(UrlShortnerContext context) : ControllerBase
 
         var keyExists = true;
         string key;
-        key = Hasher.Hmac256ToString(newURLDTO.Url, 8);
+        key = Hasher.Hmac256ToString(dto.Url, 8);
         var counter = 0;
+
         do
         {
             keyExists = await KeyExists(key);
+
             if (keyExists)
             {
-                key = Hasher.Hmac256ToString(newURLDTO.Url, 8, counter);
+                key = Hasher.Hmac256ToString(dto.Url, 8, counter);
                 counter++;
             }
         } while (keyExists);
 
-        if (!newURLDTO.Url.StartsWith("http://") && !newURLDTO.Url.StartsWith("https://"))
-        {
-            newURLDTO.Url = $"http://{newURLDTO.Url}";
-        }
-
-        var url = new Url { LongUrl = newURLDTO.Url, Key = key, ShortUrl = $"{newURLDTO.ShortUrl}{key}" };
+        var url = new Url { LongUrl = dto.Url, Key = key, ShortUrl = $"{dto.ShortUrl}{key}" };
         _ = _context.Urls.Add(url);
         _ = await _context.SaveChangesAsync();
+
         return Ok(url);
     }
 
@@ -90,6 +84,7 @@ public class UrlsController(UrlShortnerContext context) : ControllerBase
 
         return NoContent();
     }
+
     private async Task<bool> KeyExists(string key)
     {
         return await _context.Urls.AnyAsync(x => x.Key == key);

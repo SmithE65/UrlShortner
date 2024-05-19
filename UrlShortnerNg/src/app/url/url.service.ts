@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GlobalService } from '../core/global.service';
-import { NewUrlDTO } from '../dtos/newUrlDTO';
+import { NewUrlDto } from '../dtos/newUrlDto';
 import { Observable } from 'rxjs';
+import { ShortenUrl } from './url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UrlService {
-  url:any = `${this.globalSvc.config.baseUrl}/urls/`;
-  constructor(private globalSvc:GlobalService, private http: HttpClient) { }
+  url: string = `${this.globalSvc.config.baseUrl}/urls/`;
 
-  createNewURL(newURLDTO:NewUrlDTO):Observable<any>{
-    return this.http.post(`${this.url}`,newURLDTO) as Observable<any>;
+  constructor(private globalSvc: GlobalService, private http: HttpClient) { }
+
+  createNewUrl(newUrlDto: NewUrlDto): Observable<ShortenUrl> {
+    return this.http.post(`${this.url}`, newUrlDto) as Observable<ShortenUrl>;
   }
-  fetchUrl(key:string):Observable<any>{
-    return this.http.get(`${this.url}bykey/${key}`) as Observable<any>
+
+  fetchUrl(key: string): Observable<any> {
+    return this.http.get(`${this.url}${key}`) as Observable<any>
   }
 }

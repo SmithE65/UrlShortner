@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { ShortenURL } from '../url';
+import { ShortenUrl } from '../url';
 import { GlobalService } from 'src/app/core/global.service';
 import { UrlService } from '../url.service';
-import { Route, Router} from '@angular/router';
-import { NewUrlDTO } from 'src/app/dtos/newUrlDTO';
-import { DomSanitizer } from '@angular/platform-browser';
+import { NewUrlDto } from 'src/app/dtos/newUrlDto';
 import { Clipboard } from '@angular/cdk/clipboard'
 
 @Component({
@@ -13,32 +11,33 @@ import { Clipboard } from '@angular/cdk/clipboard'
   styleUrls: ['./new-short-url.component.css']
 })
 export class NewShortUrlComponent {
-  newUrlDTO: NewUrlDTO = new NewUrlDTO();
-  shortenUrl =  this.globalSvc.config.shortUrl;
-  newURL!:ShortenURL;
+  newUrlDto: NewUrlDto = new NewUrlDto;
+  shortenUrl = this.globalSvc.config.shortUrl;
+  newUrl: ShortenUrl = new ShortenUrl;
   message: any;
-  constructor(private globalSvc:GlobalService,
-    private urlSvc:UrlService,
-    private sanitizer :DomSanitizer,
+
+  constructor(private globalSvc: GlobalService,
+    private urlSvc: UrlService,
     private clippy: Clipboard
-  ){}
+  ) { }
 
 
-  createNewUrl():void{
-    this.newUrlDTO.shortURL = this.globalSvc.config.shortUrl;
+  createNewUrl(): void {
+    this.newUrlDto.shortURL = this.globalSvc.config.shortUrl;
 
-    this.urlSvc.createNewURL(this.newUrlDTO).subscribe({
-      next:(res) => {
+    this.urlSvc.createNewUrl(this.newUrlDto).subscribe({
+      next: (res) => {
         console.debug(res);
-        this.newURL = res;
-        this.message = this.newURL.shortUrl;
+        this.newUrl = res;
+        this.message = this.newUrl.shortUrl;
       },
-      error:(err) => {
+      error: (err) => {
         console.error(err);
       }
     });
   }
-  copyUrl():void{
-    this.clippy.copy(this.newURL.shortUrl);
+
+  copyUrl(): void {
+    this.clippy.copy(this.newUrl.shortUrl);
   }
 }

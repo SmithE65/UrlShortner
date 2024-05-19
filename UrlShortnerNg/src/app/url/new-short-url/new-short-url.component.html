@@ -1,10 +1,11 @@
 <div class="container bordered">
     <div class="line">
         <span class="label">URL:</span>
-        <input [(ngModel)] = "newUrlDTO.url">
-        <button class="btn btnUrl"(click)="createNewUrl()">Add  URL</button>
+        <input [(ngModel)]="newUrlDto.url">
+        <button class="btn btnUrl" (click)="createNewUrl()">Add URL</button>
     </div>
     <div class="message" *ngIf="message">
-        Short URL: <a href="{{message}}">{{message}} </a> <button title="copy" class="copy" (click)="copyUrl()"><i class="bi bi-clipboard"></i></button>
+        Short URL: <a href="{{message}}">{{message}} </a> <button title="copy" class="copy" (click)="copyUrl()"><i
+                class="bi bi-clipboard"></i></button>
     </div>
 </div>

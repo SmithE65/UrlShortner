@@ -1,4 +1,4 @@
-export class NewUrlDTO{
-    url:string ="";
-    shortURL:string = "";
+export class NewUrlDto {
+    url: string = "";
+    shortURL: string = "";
 }
