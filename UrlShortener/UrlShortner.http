@@ -1,6 +1,15 @@
-@UrlShortner_HostAddress = http://localhost:5193
+@UrlShortner_HostAddress = https://localhost:7144
 
-GET {{UrlShortner_HostAddress}}/weatherforecast/
-Accept: application/json
+GET {{UrlShortner_HostAddress}}/5Yu417me/
+Accept: application/json 
+
+###
+
+POST {{UrlShortner_HostAddress}}
+Content-Type: application/json
+
+{
+  "url": "https://www.google.com"
+}
 
 ###

@@ -11,6 +11,7 @@ namespace UrlShortener.Controllers;
 
 [Route("/")]
 [ApiController]
+[Produces("application/json")]
 public class UrlsController(UrlShortenerContext context) : ControllerBase
 {
     private readonly UrlShortenerContext _context = context;
