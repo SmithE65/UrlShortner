@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace UrlShortener.Models;
 
-[Index(nameof(ShortUrl), nameof(Key), IsUnique = true)]
+[Index(nameof(ShortUrl), IsUnique = true)]
 public class Url
 {
     public int Id { get; set; }
