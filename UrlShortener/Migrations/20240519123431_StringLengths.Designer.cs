@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UrlShortner.Data;
+using UrlShortener.Data;
 
 #nullable disable
 
-namespace UrlShortner.Migrations
+namespace UrlShortener.Migrations
 {
-    [DbContext(typeof(UrlShortnerContext))]
-    [Migration("20240519121539_Initial")]
-    partial class Initial
+    [DbContext(typeof(UrlShortenerContext))]
+    [Migration("20240519123431_StringLengths")]
+    partial class StringLengths
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace UrlShortner.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("UrlShortner.Models.Url", b =>
+            modelBuilder.Entity("UrlShortener.Models.Url", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,11 +39,13 @@ namespace UrlShortner.Migrations
 
                     b.Property<string>("LongUrl")
                         .IsRequired()
+                        .HasMaxLength(8000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShortUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.HasKey("Id");
 

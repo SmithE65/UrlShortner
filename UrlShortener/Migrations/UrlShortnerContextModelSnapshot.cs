@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UrlShortner.Data;
+using UrlShortener.Data;
 
 #nullable disable
 
 namespace UrlShortner.Migrations
 {
-    [DbContext(typeof(UrlShortnerContext))]
+    [DbContext(typeof(UrlShortenerContext))]
     partial class UrlShortnerContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace UrlShortner.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("UrlShortner.Models.Url", b =>
+            modelBuilder.Entity("UrlShortener.Models.Url", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

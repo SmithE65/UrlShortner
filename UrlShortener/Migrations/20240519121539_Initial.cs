@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UrlShortner.Migrations
+namespace UrlShortener.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

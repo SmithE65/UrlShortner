@@ -1,15 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using UrlShortner.Data;
+using UrlShortener.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-var connectionString = builder.Configuration.GetConnectionString("DevDb")
-    ?? throw new InvalidOperationException("UrlShortnerContext Not Found");
+var connectionString = builder.Configuration.GetConnectionString("UrlShortener")
+    ?? throw new InvalidOperationException("UrlShortenerContext Not Found");
 
-builder.Services.AddDbContext<UrlShortnerContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<UrlShortenerContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddControllers();
 builder.Services.AddCors();
 

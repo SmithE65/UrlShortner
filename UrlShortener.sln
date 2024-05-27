@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrlShortner", "UrlShortner\UrlShortner.csproj", "{4C5AE287-C19A-48C6-99FD-1ACE5BD65128}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrlShortener", "UrlShortener\UrlShortener.csproj", "{4C5AE287-C19A-48C6-99FD-1ACE5BD65128}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomString", "RandomString\RandomString.csproj", "{8A169ED1-D062-4236-B70A-F228DD59A186}"
 EndProject

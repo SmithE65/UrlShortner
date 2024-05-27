@@ -5,6 +5,10 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>b49bc462-dffe-4ba3-86d1-f3490ecd2f26</UserSecretsId>
+    <AssemblyName>UrlShortener</AssemblyName>
+    <RootNamespace>UrlShortener</RootNamespace>
+    <Company>UrlShortener</Company>
+    <Product>UrlShortener</Product>
   </PropertyGroup>
 
   <ItemGroup>
